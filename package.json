@@ -1,0 +1,63 @@
+{
+  "name": "@itlackey/openkit-starter",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Developer toolkit to package and publish OpenCode extensions (agents, commands, plugins, skills, tools, themes) as one npm plugin.",
+  "keywords": [    
+    "opencode",
+    "opencode-ai",
+    "opencode-plugin",
+    "opencode-extensions",
+    "openkit",
+    "ai-agent",
+    "agent-framework",
+    "developer-tools",
+    "npm-template",
+    "agent",
+    "plugin",
+    "tools",
+    "skills",
+    "commands",
+    "themes"
+  ],
+  "homepage": "https://github.com/itlackey/openkit-starter#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itlackey/openkit-starter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/itlackey/openkit-starter/issues"
+  },
+  "license": "CC-BY-4.0",
+  "files": [
+    "dist",
+    "index.ts",
+    "opencode",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "bun build ./index.ts --outdir ./dist --target node --format esm",
+    "build:types": "tsc --project ./tsconfig.build.json && node -e \"const fs=require('node:fs');fs.writeFileSync('dist/index.d.ts','export { plugin } from \\\"./src/plugin\\\"\\\\n');fs.writeFileSync('dist/install.d.ts','export { createInstallerPlugin, installExtensions, type InstallerOptions } from \\\"./src/install\\\"\\\\n');\"",
+    "prepublishOnly": "npm run build && npm run build:types"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "^1.2.10",
+    "@itlackey/openkit": "^0.1.7"  
+  }
+}
