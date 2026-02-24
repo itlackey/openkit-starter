@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "type": "module",
   "description": "Developer toolkit to package and publish OpenCode extensions (agents, commands, plugins, skills, tools, themes) as one npm plugin.",
-  "keywords": [    
+  "keywords": [
     "opencode",
     "opencode-ai",
     "opencode-plugin",
@@ -46,7 +46,7 @@
   },
   "scripts": {
     "build": "bun build ./index.ts --outdir ./dist --target node --format esm",
-    "build:types": "tsc --project ./tsconfig.build.json && node -e \"const fs=require('node:fs');fs.writeFileSync('dist/index.d.ts','export { plugin } from \\\"./src/plugin\\\"\\\\n');fs.writeFileSync('dist/install.d.ts','export { createInstallerPlugin, installExtensions, type InstallerOptions } from \\\"./src/install\\\"\\\\n');\"",
+    "build:types": "tsc --project ./tsconfig.build.json",
     "prepublishOnly": "npm run build && npm run build:types"
   },
   "publishConfig": {
@@ -58,6 +58,6 @@
   },
   "dependencies": {
     "@opencode-ai/plugin": "^1.2.10",
-    "@itlackey/openkit": "^0.1.7"  
+    "@itlackey/openkit": "^0.2.2"
   }
 }
